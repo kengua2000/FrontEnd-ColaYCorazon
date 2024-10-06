@@ -1,0 +1,93 @@
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <!-- Logo de la barra de navegación -->
+    <img src="pet.png" alt="Logo" style="height: 40px; padding-left: 15px;">
+    <!-- Botón para colapsar la barra en dispositivos móviles -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Links de la barra de navegación -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <!-- Link a la página de inicio -->
+            <li class="nav-item active">
+                <a class="nav-link text-white" [routerLink]="['/mascotas']">Inicio</a>
+            </li>
+            <!-- Link a la página de mascotas -->
+            <li class="nav-item">
+                <a class="nav-link text-white" [routerLink]="['/mascotas2']">Mascotas</a>
+            </li>
+            <!-- Link a la página de clientes -->
+            <li class="nav-item">
+                <a class="nav-link text-white" [routerLink]="['/clientes']">Clientes</a>
+            </li>
+            <!-- Link a la página de solicitudes -->
+            <li class="nav-item">
+                <a class="nav-link text-white" [routerLink]="['/solicitudes']">Solicitudes</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Barra de búsqueda -->
+<div class="row mt-4">
+    <div class="col-12 d-flex justify-content-end">
+        <!-- Input para buscar mascotas por filtro -->
+        <input type="text" class="form-control w-50" placeholder="Buscar mascota..." [(ngModel)]="filtro" (input)="buscarMascotasPorFiltro()">
+    </div>
+</div>
+
+<!-- Contenedor principal con fondo -->
+<div class="container-fluid bg-light py-5" style="background-image: url('https://example.com/fondo.jpg'); background-size: cover; background-position: center;">
+    <div class="container bg-white rounded shadow-lg p-4">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <!-- Título de la sección de mascotas disponibles -->
+                <h2 class="text-primary">Mascotas Disponibles</h2>
+                <!-- Botón para agregar una nueva mascota -->
+                <a class="btn btn-success" [routerLink]="['/mascotas2/agregar']">Nueva Mascota</a>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12">
+                <!-- Tabla de mascotas disponibles -->
+                <table class="table table-hover table-bordered">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <!-- Encabezados de la tabla -->
+                            <th>ID Mascota</th>
+                            <th>Nombre</th>
+                            <th>Edad</th>
+                            <th>Raza</th>
+                            <th>Especie</th>
+                            <th>Sexo</th>
+                            <th>Estado</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Filas de la tabla generadas dinámicamente -->
+                        <tr *ngFor="let mascota of mascotas | async">
+                            <!-- Datos de la mascota -->
+                            <td>{{ mascota.id_mascota }}</td>
+                            <td>{{ mascota.nombre }}</td>
+                            <td>{{ mascota.edad }}</td>
+                            <td>{{ mascota.raza }}</td>
+                            <td>{{ mascota.especie }}</td>
+                            <td>{{ mascota.sexo }}</td>
+                            <td>{{ mascota.estado }}</td>
+                            <td class="text-center">
+                                <!-- Botón para editar la mascota -->
+                                <a class="btn btn-info btn-sm mr-2" [routerLink]="['/mascotas2/editar/', mascota.id_mascota]">Editar</a>
+                                <!-- Botón para borrar la mascota -->
+                                <button class="btn btn-danger btn-sm" (click)="borrarMascota(mascota.id_mascota)">Borrar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

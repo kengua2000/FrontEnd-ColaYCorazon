@@ -1,0 +1,114 @@
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <!-- Logo de la aplicación -->
+    <img src="pet.png" alt="Logo" style="height: 40px; padding-left: 15px;">
+    
+    <!-- Botón para colapsar la barra de navegación en pantallas pequeñas -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Contenido de la barra de navegación -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <!-- Enlaces de navegación -->
+            <li class="nav-item">
+                <a class="nav-link text-white" [routerLink]="['/mascotas']">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" [routerLink]="['/mascotas2']">Mascotas</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link text-white" [routerLink]="['/clientes']">Clientes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" [routerLink]="['/solicitudes']">Solicitudes</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Contenedor principal del formulario de mascota -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Título dinámico según si es un registro o edición de mascota -->
+            <h2 class="text-center text-primary mb-4">{{ idMascota ? 'Editar Mascota' : 'Registrar Nueva Mascota' }}</h2>
+            
+            <!-- Tarjeta que contiene el formulario -->
+            <div class="card shadow-lg border-0 rounded-lg">
+                <!-- Encabezado del formulario -->
+                <div class="card-header text-white" style="background-color: #007bff; border-top-left-radius: 0.35rem; border-top-right-radius: 0.35rem;">
+                    <h5 class="mb-0">Formulario de Mascota</h5>
+                </div>
+                
+                <!-- Cuerpo del formulario -->
+                <div class="card-body p-4">
+                    <!-- Formulario para crear o editar una mascota -->
+                    <form (ngSubmit)="onSubmit()" #mascotaForm="ngForm">
+                        
+                        <!-- Campo para ingresar el nombre de la mascota -->
+                        <fieldset class="form-group">
+                            <label class="control-label" for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" required [(ngModel)]="mascota.nombre" name="nombre" placeholder="Ingrese el nombre de la mascota">
+                        </fieldset>
+
+                        <!-- Campo para ingresar la edad de la mascota -->
+                        <fieldset class="form-group">
+                            <label class="control-label" for="edad">Edad</label>
+                            <input type="number" class="form-control" id="edad" required [(ngModel)]="mascota.edad" name="edad" placeholder="Ingrese la edad de la mascota">
+                        </fieldset>
+
+                        <!-- Campo para ingresar la raza de la mascota -->
+                        <fieldset class="form-group">
+                            <label class="control-label" for="raza">Raza</label>
+                            <input type="text" class="form-control" id="raza" required [(ngModel)]="mascota.raza" name="raza" placeholder="Ingrese la raza de la mascota">
+                        </fieldset>
+
+                        <!-- Campo para ingresar la especie de la mascota -->
+                        <fieldset class="form-group">
+                            <label class="control-label" for="especie">Especie</label>
+                            <input type="text" class="form-control" id="especie" required [(ngModel)]="mascota.especie" name="especie" placeholder="Ingrese la especie de la mascota">
+                        </fieldset>
+
+                        <!-- Campo para seleccionar el sexo de la mascota -->
+                        <fieldset class="form-group">
+                            <label class="control-label" for="sexo">Sexo</label>
+                            <select class="form-control" id="sexo" required [(ngModel)]="mascota.sexo" name="sexo">
+                                <option value="Macho">Macho</option>
+                                <option value="Hembra">Hembra</option>
+                            </select>
+                        </fieldset>
+
+                        <!-- Campo para seleccionar el estado de la mascota -->
+                        <fieldset class="form-group">
+                            <label class="control-label" for="estado">Estado</label>
+                            <select class="form-control" id="estado" required [(ngModel)]="mascota.estado" name="estado">
+                                <option value="Disponible">Disponible</option>
+                                <option value="Adoptada">Adoptada</option>
+                            </select>
+                        </fieldset>
+
+                        <!-- Campo para ingresar la descripción de la mascota -->
+                        <fieldset class="form-group">
+                            <label class="control-label" for="descripcion">Descripción</label>
+                            <textarea class="form-control" id="descripcion" required [(ngModel)]="mascota.descripcion" name="descripcion" rows="3" placeholder="Describa las características de la mascota"></textarea>
+                        </fieldset>
+
+                        <!-- Campo para ingresar la URL de la foto de la mascota -->
+                        <fieldset class="form-group">
+                            <label class="control-label" for="foto_url">Foto URL</label>
+                            <input type="text" class="form-control" id="foto_url" required [(ngModel)]="mascota.foto_url" name="foto_url" placeholder="Ingrese la URL de la foto de la mascota">
+                        </fieldset>
+
+                        <!-- Botones para enviar el formulario o cancelar -->
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary" [disabled]="!mascotaForm.valid">{{ idMascota ? 'Actualizar Mascota' : 'Crear Mascota' }}</button>
+                            <button type="button" class="btn btn-secondary ms-3" [routerLink]="['/mascotas']">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <img src="pet.png" alt="Logo" style="height: 40px; padding-left: 15px;"> <!-- Logo de la aplicación -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span> <!-- Icono para el menú colapsable -->
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav"> <!-- Contenedor del menú de navegación -->
+        <ul class="navbar-nav ml-auto"> <!-- Lista de elementos de navegación alineada a la derecha -->
+            <li class="nav-item active"> <!-- Elemento de navegación activo -->
+                <a class="nav-link text-white" [routerLink]="['/mascotas']">Inicio</a> <!-- Enlace a la página de inicio -->
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" [routerLink]="['/mascotas2']">Mascotas</a> <!-- Enlace a la página de mascotas -->
+          </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" [routerLink]="['/clientes']">Clientes</a> <!-- Enlace a la página de clientes -->
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" [routerLink]="['/solicitudes']">Solicitudes</a> <!-- Enlace a la página de solicitudes -->
+            </li>
+        </ul>
+    </div>
+  </nav>
+  
+  <!-- Contenedor principal con fondo -->
+  <div class="container-fluid bg-light py-5" style="background-image: url('https://example.com/fondo.jpg'); background-size: cover; background-position: center;">
+    <div class="container bg-white rounded shadow-lg p-4"> <!-- Contenedor de contenido con fondo blanco -->
+        <div class="row">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <h2 class="text-primary">Lista de Clientes</h2> <!-- Título de la sección -->
+                <a class="btn btn-success" [routerLink]="['/clientes/agregar']">Nuevo Cliente</a> <!-- Botón para agregar un nuevo cliente -->
+            </div>
+        </div>
+  
+        <!-- Barra de búsqueda -->
+        <div class="row mt-4">
+          <div class="col-12 d-flex justify-content-end">
+              <input type="text" class="form-control w-50" placeholder="Buscar cliente..." [(ngModel)]="filtro" (input)="buscarClientesPorFiltro()"> <!-- Campo de búsqueda -->
+          </div>
+      </div>
+  
+        <div class="row mt-4">
+            <div class="col-12">
+                <table class="table table-striped table-bordered"> <!-- Tabla para mostrar la lista de clientes -->
+                    <thead class="bg-primary text-white"> <!-- Encabezado de la tabla -->
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th class="text-center">Acciones</th> <!-- Columna para acciones -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cliente of clientes | async"> <!-- Repite esta fila para cada cliente en la lista -->
+                            <td>{{ cliente.id_cliente }}</td>
+                            <td>{{ cliente.nombre }}</td>
+                            <td>{{ cliente.apellido }}</td>
+                            <td>{{ cliente.telefono || 'N/A' }}</td> <!-- Muestra 'N/A' si no hay teléfono -->
+                            <td>{{ cliente.email || 'N/A' }}</td> <!-- Muestra 'N/A' si no hay email -->
+                            <td class="text-center"> <!-- Columna de acciones -->
+                                <a class="btn btn-info btn-sm mr-2" [routerLink]="['/clientes/editar/', cliente.id_cliente]">Editar</a> <!-- Botón para editar el cliente -->
+                                <button class="btn btn-danger btn-sm" (click)="borrarCliente(cliente.id_cliente)">Borrar</button> <!-- Botón para borrar el cliente -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>
+  
