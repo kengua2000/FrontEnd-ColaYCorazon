@@ -49,7 +49,7 @@ export class EditarMascotasComponent implements OnInit {
       this.mascotaService.actualizarMascota(this.mascota).subscribe({
         next: data => {
           console.log('Mascota actualizada con éxito', data); // Imprime éxito en la consola
-          this.router.navigate(['/mascotas2']); // Redirige a la lista de mascotas después de la actualización
+          this.router.navigate(['/mascotas']); // Redirige a la lista de mascotas después de la actualización
         },
         error: err => {
           console.log(`Error al actualizar la mascota: ${err}`); // Maneja errores en caso de fallos
@@ -60,7 +60,7 @@ export class EditarMascotasComponent implements OnInit {
       this.mascotaService.agregarMascota(this.mascota).subscribe({
         next: () => {
           console.log('Mascota creada con éxito'); // Imprime éxito en la consola
-          this.router.navigate(['/mascotas2']); // Redirige a la lista de mascotas después de la creación
+          this.router.navigate(['/mascotas']); // Redirige a la lista de mascotas después de la creación
         },
         error: err => {
           console.log(`Error al agregar la mascota: ${err}`); // Maneja errores en caso de fallos

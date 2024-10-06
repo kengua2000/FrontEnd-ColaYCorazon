@@ -28,7 +28,7 @@ export class SolicitudService {
 
   // Método para actualizar una solicitud existente
   actualizarSolicitud(solicitud: SolicitudModel) {
-    return this.http.put<string>(`${this.BASE_URL}/solicitudes/buscarIdSolicitudAdopcion/${solicitud.id_solicitud}`, solicitud); // Realiza una petición PUT.
+    return this.http.put<string>(`${this.BASE_URL}/solicitudes/actualizarSolicitudAdopcion/${solicitud.id_solicitud}`, solicitud); // Realiza una petición PUT.
   }
 
   // Método para eliminar una solicitud por ID

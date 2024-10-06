@@ -68,7 +68,7 @@
   
                         <div class="text-center mt-4">
                             <!-- Botón para enviar el formulario, deshabilitado si el formulario es inválido -->
-                            <button type="submit" class="btn btn-primary" [disabled]="!solicitudForm.valid">Crear Solicitud</button>
+                            <button type="submit" class="btn btn-primary" [disabled]="!solicitudForm.valid">{{ idSolicitud ? 'Actualizar Solicitud' : 'Crear Solicitud' }}</button>
                             <!-- Botón para cancelar y volver a la lista de solicitudes -->
                             <button type="button" class="btn btn-secondary ms-3" [routerLink]="['/solicitudes']">Cancelar</button>
                         </div>
