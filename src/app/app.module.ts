@@ -15,6 +15,7 @@ import { ListaSolicitudesComponent } from './lista-solicitudes/lista-solicitudes
 import { EditarSolicitudesComponent } from './editar-solicitudes/editar-solicitudes.component';
 import { HomeColaycorazonComponent } from './home-colaycorazon/home-colaycorazon.component';
 import { MascotaDetallesComponent } from './mascota-detalles/mascota-detalles.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MascotaDetallesComponent } from './mascota-detalles/mascota-detalles.co
     ListaSolicitudesComponent,
     EditarSolicitudesComponent,
     HomeColaycorazonComponent,
-    MascotaDetallesComponent
+    MascotaDetallesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

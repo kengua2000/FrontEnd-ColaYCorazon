@@ -1,0 +1,24 @@
+<div class="container mt-5"> <!-- Contenedor principal para el formulario de inicio de sesión, con margen superior -->
+    <div class="row justify-content-center"> <!-- Fila para centrar el contenido -->
+        <div class="col-md-6"> <!-- Columna que ocupa la mitad del ancho en pantallas medianas -->
+            <h2 class="text-center text-primary mb-4">Iniciar Sesión</h2> <!-- Título centrado y estilizado -->
+            <div class="card shadow-lg border-0 rounded-lg"> <!-- Tarjeta con sombra y bordes redondeados -->
+                <div class="card-body p-4"> <!-- Cuerpo de la tarjeta con padding -->
+                    <form (ngSubmit)="onSubmit()" #loginForm="ngForm"> <!-- Formulario que llama a onSubmit() al enviarse y utiliza ngForm para validación -->
+                        <fieldset class="form-group"> <!-- Agrupación de elementos de formulario -->
+                            <label for="email" class="font-weight-bold">Correo electrónico</label> <!-- Etiqueta para el campo de correo -->
+                            <input type="email" class="form-control" id="email" required [(ngModel)]="email" name="email" placeholder="Ingrese su correo"> <!-- Campo de entrada para correo electrónico, enlazado a la propiedad email -->
+                        </fieldset>
+                        
+                        <fieldset class="form-group"> <!-- Agrupación de elementos de formulario -->
+                            <label for="password" class="font-weight-bold">Contraseña</label> <!-- Etiqueta para el campo de contraseña -->
+                            <input type="password" class="form-control" id="password" required [(ngModel)]="password" name="password" placeholder="Ingrese su contraseña"> <!-- Campo de entrada para contraseña, enlazado a la propiedad password -->
+                        </fieldset>
+
+                        <button type="submit" class="btn btn-primary btn-block mt-4" [disabled]="!loginForm.valid">Iniciar Sesión</button> <!-- Botón de envío que se desactiva si el formulario no es válido -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
