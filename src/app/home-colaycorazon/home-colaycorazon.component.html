@@ -14,7 +14,7 @@
         <ul class="navbar-nav mr-auto">
             <!-- Enlaces de navegación -->
             <li class="nav-item active">
-                <a class="nav-link text-white" [routerLink]="['/mascotas']">Inicio</a>
+                <a class="nav-link text-white" [routerLink]="['/home']">Inicio</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="#">Tienda</a>
@@ -42,7 +42,7 @@
             <!-- Card de ejemplo de una mascota -->
             <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let mascota of mascotas | async">
                 <!-- Enlace a la página de detalles de la mascota -->
-                <a [routerLink]="['/mascotas/detalles', mascota.id_mascota]" class="card mb-4 shadow-sm text-decoration-none" style="color: inherit;">
+                <a [routerLink]="['/home/detalles', mascota.id_mascota]" class="card mb-4 shadow-sm text-decoration-none" style="color: inherit;">
                     <img class="card-img-top" [src]="mascota.foto_url" alt="Imagen de {{mascota.nombre}}" style="height: 200px; object-fit: cover;">
                     <div class="card-body">
                         <h5 class="card-title">{{ mascota.nombre }}</h5>

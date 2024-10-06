@@ -18,7 +18,7 @@ export class LoginComponent {
     
     // Simular autenticación exitosa
     if (this.email === 'administrador@udenar.com' && this.password === '123456') { // Verifica las credenciales
-      this.router.navigate(['/clientes']); // Redirige al inicio si la autenticación es exitosa
+      this.router.navigate(['/mascotas']); // Redirige al inicio si la autenticación es exitosa
     } else {
       alert('Credenciales incorrectas'); // Muestra un mensaje de error si las credenciales son incorrectas
     }
