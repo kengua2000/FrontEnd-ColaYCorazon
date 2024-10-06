@@ -1,0 +1,66 @@
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <img src="pet.png" alt="Logo" style="height: 40px; padding-left: 15px;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link text-white" [routerLink]="['/mascotas']">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" [routerLink]="['/mascotas2']">Mascotas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" [routerLink]="['/clientes']">Clientes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" [routerLink]="['/solicitudes']">Solicitudes</a>
+            </li>
+        </ul>
+    </div>
+  </nav>
+  
+  <!-- Contenedor principal con fondo -->
+  <div class="container-fluid bg-light py-5" style="background-image: url('https://example.com/fondo.jpg'); background-size: cover; background-position: center;">
+    <div class="container bg-white rounded shadow-lg p-4">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <h2 class="text-primary">Solicitudes de Adopción</h2>
+                <a class="btn btn-success" [routerLink]="['/solicitudes/agregar']">Nueva Solicitud</a>
+            </div>
+        </div>
+  
+        <div class="row mt-4">
+            <div class="col-12">
+                <table class="table table-hover table-bordered">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>ID Solicitud</th>
+                            <th>ID Mascota</th>
+                            <th>ID Cliente</th>
+                            <th>Fecha Solicitud</th>
+                            <th>Estado</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let solicitud of solicitudes | async">
+                            <td>{{ solicitud.id_solicitud }}</td>
+                            <td>{{ solicitud.id_mascota }}</td>
+                            <td>{{ solicitud.id_cliente }}</td>
+                            <td>{{ solicitud.fecha_solicitud | date:'dd/MM/yyyy' || 'N/A' }}</td>
+                            <td>{{ solicitud.estado }}</td>
+                            <td class="text-center">
+                                <a class="btn btn-info btn-sm mr-2" [routerLink]="['/solicitudes/editar/', solicitud.id_solicitud]">Editar</a>
+                                <button class="btn btn-danger btn-sm" (click)="borrarSolicitud(solicitud.id_solicitud)">Borrar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>
+  

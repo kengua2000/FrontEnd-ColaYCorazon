@@ -11,6 +11,8 @@ import { ListaMascotasComponent } from './lista-mascotas/lista-mascotas.componen
 import { EditarMascotasComponent } from './editar-mascotas/editar-mascotas.component';
 import { ListaClientesComponent } from './lista-clientes/lista-clientes.component';
 import { EditarClientesComponent } from './editar-clientes/editar-clientes.component';
+import { ListaSolicitudesComponent } from './lista-solicitudes/lista-solicitudes.component';
+import { EditarSolicitudesComponent } from './editar-solicitudes/editar-solicitudes.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { EditarClientesComponent } from './editar-clientes/editar-clientes.compo
     ListaMascotasComponent,
     EditarMascotasComponent,
     ListaClientesComponent,
-    EditarClientesComponent
+    EditarClientesComponent,
+    ListaSolicitudesComponent,
+    EditarSolicitudesComponent
   ],
   imports: [
     BrowserModule,

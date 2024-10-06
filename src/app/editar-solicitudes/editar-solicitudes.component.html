@@ -1,0 +1,80 @@
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <img src="pet.png" alt="Logo" style="height: 40px; padding-left: 15px;">
+    <!-- Botón para colapsar la barra en pantallas pequeñas -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link text-white" [routerLink]="['/mascotas']">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" [routerLink]="['/clientes']">Clientes</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link text-white" [routerLink]="['/solicitudes']">Solicitudes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" [routerLink]="['/mascotas2']">Mascotas</a>
+            </li>
+        </ul>
+    </div>
+  </nav>
+  
+  <!-- Contenedor principal -->
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+          <!-- Título que cambia según el modo (editar o crear nueva solicitud) -->
+          <h2 class="text-center text-primary">{{ idSolicitud ? 'Editar Solicitud' : 'Registrar Nueva Solicitud' }}</h2>
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-header text-white" style="background-color: #007bff; border-top-left-radius: 0.35rem; border-top-right-radius: 0.35rem;">
+                    <h5 class="mb-0">Formulario de Solicitud</h5>
+                </div>
+                <div class="card-body p-4">
+                    <!-- Formulario para la solicitud -->
+                    <form (ngSubmit)="onSubmit()" #solicitudForm="ngForm">
+                        <fieldset class="form-group">
+                            <label class="control-label" for="id_mascota">ID Mascota</label>
+                            <input type="text" class="form-control" id="id_mascota" required [(ngModel)]="solicitud.id_mascota" name="id_mascota" placeholder="Ingrese el ID de la mascota">
+                        </fieldset>
+  
+                        <fieldset class="form-group">
+                            <label class="control-label" for="id_cliente">ID Cliente</label>
+                            <input type="text" class="form-control" id="id_cliente" required [(ngModel)]="solicitud.id_cliente" name="id_cliente" placeholder="Ingrese el ID del cliente">
+                        </fieldset>
+  
+                        <fieldset class="form-group">
+                            <label class="control-label" for="fecha_solicitud">Fecha de Solicitud</label>
+                            <input type="date" class="form-control" id="fecha_solicitud" [(ngModel)]="solicitud.fecha_solicitud" name="fecha_solicitud" required>
+                        </fieldset>
+  
+                        <fieldset class="form-group">
+                            <label class="control-label" for="estado">Estado</label>
+                            <select class="form-control" id="estado" required [(ngModel)]="solicitud.estado" name="estado">
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="Aprobada">Aprobada</option>
+                                <option value="Rechazada">Rechazada</option>
+                            </select>
+                        </fieldset>
+  
+                        <fieldset class="form-group">
+                            <label class="control-label" for="comentarios">Comentarios</label>
+                            <textarea class="form-control" id="comentarios" [(ngModel)]="solicitud.comentarios" name="comentarios" placeholder="Ingrese sus comentarios" rows="3"></textarea>
+                        </fieldset>
+  
+                        <div class="text-center mt-4">
+                            <!-- Botón para enviar el formulario, deshabilitado si el formulario es inválido -->
+                            <button type="submit" class="btn btn-primary" [disabled]="!solicitudForm.valid">Crear Solicitud</button>
+                            <!-- Botón para cancelar y volver a la lista de solicitudes -->
+                            <button type="button" class="btn btn-secondary ms-3" [routerLink]="['/solicitudes']">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
