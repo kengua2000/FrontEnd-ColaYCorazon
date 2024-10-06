@@ -1,0 +1,96 @@
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <a class="navbar-brand" href="#">
+        <!-- Logo de la aplicación, imagen de mascota -->
+        <img src="pet.png" alt="Logo" style="height: 40px; padding-left: 15px;">
+    </a>
+    
+    <!-- Botón de menú que colapsa la barra de navegación en pantallas pequeñas -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <!-- Enlace a la página de inicio -->
+                <a class="nav-link text-white" [routerLink]="['/mascotas']">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <!-- Enlace a la tienda (sin funcionalidad definida en este fragmento) -->
+                <a class="nav-link text-white" href="#">Tienda</a>
+            </li>
+        </ul>
+  
+        <!-- Imagen de usuario con enlace al login -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/login']">
+                    <!-- Icono SVG que representa un usuario -->
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="30px" fill="#e8eaed"><path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"/></svg>
+                </a>
+            </li>
+        </ul>
+    </div>
+  </nav>
+  
+  <!-- Contenedor principal para la visualización de la mascota -->
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+        <div class="card shadow-lg border-0 rounded-lg overflow-hidden" *ngIf="mascota">
+            <!-- Imagen de la mascota centrada, con borde redondeado y efecto hover -->
+            <img [src]="mascota?.foto_url" 
+               alt="Imagen de {{mascota?.nombre}}" 
+               class="card-img-top img-fluid mx-auto d-block" 
+               style="object-fit: cover; width: auto; max-width: 100%; height: auto; max-height: 300px; border-radius: 20px 20px 0 0; transition: transform 0.3s;"
+               (mouseenter)="hoverImage=true"
+               (mouseleave)="hoverImage=false"
+               [ngStyle]="{'transform': hoverImage ? 'scale(1.05)' : 'scale(1)'}">
+  
+            <div class="card-body text-center py-4">
+                <!-- Nombre de la mascota con estilo personalizado -->
+                <h2 class="card-title text-primary mb-3">{{ mascota?.nombre }}</h2>
+  
+                <hr class="mb-4">
+  
+                <!-- Información de la mascota -->
+                <p class="card-text mb-2">
+                    <i class="fas fa-paw text-secondary"></i> <strong>Especie:</strong> {{ mascota?.especie }}
+                </p>
+                <p class="card-text mb-2">
+                    <i class="fas fa-calendar-alt text-secondary"></i> <strong>Edad:</strong> {{ mascota?.edad }} años
+                </p>
+                <p class="card-text mb-2" *ngIf="mascota?.raza">
+                    <i class="fas fa-dog text-secondary"></i> <strong>Raza:</strong> {{ mascota?.raza || 'No especificada' }} <!-- Muestra 'No especificada' si no hay raza -->
+                </p>
+                <p class="card-text mb-2">
+                    <i class="fas fa-venus-mars text-secondary"></i> <strong>Sexo:</strong> {{ mascota?.sexo }}
+                </p>
+                <p class="card-text mb-4">
+                    <i class="fas fa-info-circle text-secondary"></i> <strong>Descripción:</strong> {{ mascota?.descripcion || 'Sin descripción disponible' }} <!-- Muestra un mensaje si no hay descripción -->
+                </p>
+  
+                <!-- Estado de la mascota con colores llamativos -->
+                <p [ngClass]="{'badge bg-success text-white': mascota?.estado === 'Disponible', 'badge bg-danger text-white': mascota?.estado === 'Adoptada'}" class="py-2 px-3 mb-4">
+                    <i class="fas fa-check-circle"></i> {{ mascota?.estado }}
+                </p>
+  
+                <!-- Mostrar fecha de ingreso con estilo adicional -->
+                <p class="text-muted" *ngIf="mascota?.fecha_ingreso">
+                    <i class="fas fa-calendar-day text-secondary"></i> <strong>Fecha de ingreso:</strong> {{ mascota?.fecha_ingreso | date:'longDate' }} <!-- Formato de fecha largo -->
+                </p>
+  
+                <hr>
+  
+                <!-- Botón para adoptar con animación hover -->
+                <button class="btn btn-lg btn-success px-5 py-2 mt-3" style="border-radius: 50px; transition: background-color 0.3s;" 
+                      (mouseenter)="hoverAdoptButton=true"
+                      (mouseleave)="hoverAdoptButton=false"
+                      [ngStyle]="{'background-color': hoverAdoptButton ? '#28a745' : '#218838'}">
+                  <i class="fas fa-heart"></i> Adoptar {{ mascota?.nombre }}
+              </button>
+            </div>
+        </div>
+    </div>
+  </div>
+  

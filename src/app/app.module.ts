@@ -13,6 +13,8 @@ import { ListaClientesComponent } from './lista-clientes/lista-clientes.componen
 import { EditarClientesComponent } from './editar-clientes/editar-clientes.component';
 import { ListaSolicitudesComponent } from './lista-solicitudes/lista-solicitudes.component';
 import { EditarSolicitudesComponent } from './editar-solicitudes/editar-solicitudes.component';
+import { HomeColaycorazonComponent } from './home-colaycorazon/home-colaycorazon.component';
+import { MascotaDetallesComponent } from './mascota-detalles/mascota-detalles.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { EditarSolicitudesComponent } from './editar-solicitudes/editar-solicitu
     ListaClientesComponent,
     EditarClientesComponent,
     ListaSolicitudesComponent,
-    EditarSolicitudesComponent
+    EditarSolicitudesComponent,
+    HomeColaycorazonComponent,
+    MascotaDetallesComponent
   ],
   imports: [
     BrowserModule,
