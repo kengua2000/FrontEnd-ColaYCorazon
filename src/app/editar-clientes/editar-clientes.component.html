@@ -1,0 +1,72 @@
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <img src="pet.png" alt="Logo" style="height: 40px; padding-left: 15px;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link text-white" [routerLink]="['/mascotas']">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" [routerLink]="['/mascotas2']">Mascotas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" [routerLink]="['/clientes']">Clientes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" [routerLink]="['/solicitudes']">Solicitudes</a>
+            </li>
+        </ul>
+    </div>
+  </nav>
+  
+  <!-- Contenedor principal para el formulario -->
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+          <!-- Título del formulario que cambia según el modo (editar o registrar) -->
+          <h2 class="text-center text-primary">{{ idCliente ? 'Editar Cliente' : 'Registrar Nuevo Cliente' }}</h2>
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-header text-white" style="background-color: #007bff; border-top-left-radius: 0.35rem; border-top-right-radius: 0.35rem;">
+                    <h5 class="mb-0">Formulario de Registro</h5>
+                </div>
+                <div class="card-body p-4">
+                    <form (ngSubmit)="onSubmit()" #clienteForm="ngForm">
+                        <fieldset class="form-group">
+                            <label class="control-label" for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" required [(ngModel)]="cliente.nombre" name="nombre" placeholder="Ingrese su nombre">
+                        </fieldset>
+  
+                        <fieldset class="form-group">
+                            <label class="control-label" for="apellido">Apellido</label>
+                            <input type="text" class="form-control" id="apellido" required [(ngModel)]="cliente.apellido" name="apellido" placeholder="Ingrese su apellido">
+                        </fieldset>
+  
+                        <fieldset class="form-group">
+                            <label class="control-label" for="direccion">Dirección</label>
+                            <input type="text" class="form-control" id="direccion" required [(ngModel)]="cliente.direccion" name="direccion" placeholder="Ingrese su dirección">
+                        </fieldset>
+  
+                        <fieldset class="form-group">
+                            <label class="control-label" for="telefono">Teléfono</label>
+                            <input type="text" class="form-control" id="telefono" required [(ngModel)]="cliente.telefono" name="telefono" placeholder="Ingrese su teléfono">
+                        </fieldset>
+  
+                        <fieldset class="form-group">
+                            <label class="control-label" for="email">Email</label>
+                            <input type="email" class="form-control" id="email" required [(ngModel)]="cliente.email" name="email" placeholder="Ingrese su correo electrónico">
+                        </fieldset>
+  
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary" [disabled]="!clienteForm.valid">Crear Cliente</button>
+                            <button type="button" class="btn btn-secondary ms-3" [routerLink]="['/clientes']">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

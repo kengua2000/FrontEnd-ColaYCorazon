@@ -10,13 +10,15 @@ import { FormsModule } from '@angular/forms';
 import { ListaMascotasComponent } from './lista-mascotas/lista-mascotas.component';
 import { EditarMascotasComponent } from './editar-mascotas/editar-mascotas.component';
 import { ListaClientesComponent } from './lista-clientes/lista-clientes.component';
+import { EditarClientesComponent } from './editar-clientes/editar-clientes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaMascotasComponent,
     EditarMascotasComponent,
-    ListaClientesComponent
+    ListaClientesComponent,
+    EditarClientesComponent
   ],
   imports: [
     BrowserModule,
