@@ -45,7 +45,7 @@
                 <!-- Título de la sección de mascotas disponibles -->
                 <h2 class="text-primary">Mascotas Disponibles</h2>
                 <!-- Botón para agregar una nueva mascota -->
-                <a class="btn btn-success" [routerLink]="['/mascotas2/agregar']">Nueva Mascota</a>
+                <a class="btn btn-success" [routerLink]="['/mascotas/agregar']">Nueva Mascota</a>
             </div>
         </div>
 
@@ -79,7 +79,7 @@
                             <td>{{ mascota.estado }}</td>
                             <td class="text-center">
                                 <!-- Botón para editar la mascota -->
-                                <a class="btn btn-info btn-sm mr-2" [routerLink]="['/mascotas2/editar/', mascota.id_mascota]">Editar</a>
+                                <a class="btn btn-info btn-sm mr-2" [routerLink]="['/mascotas/editar/', mascota.id_mascota]">Editar</a>
                                 <!-- Botón para borrar la mascota -->
                                 <button class="btn btn-danger btn-sm" (click)="borrarMascota(mascota.id_mascota)">Borrar</button>
                             </td>
